@@ -6,7 +6,7 @@ Realize um fork deste projeto em seu github e desenvolva o projeto utilizando o 
 
 Requisitos:
 - Será necessário desenvolver duas aplicações em linguagem PHP sendo um voltada ao frontend e outra ao backend.
-- Utilizar um design básico nas telas de frontend com o bootstrap.
+- Utilizar um design responsivo nas telas de frontend com o bootstrap.
 - Será verificado também o uso do git, tanto na montagem das branchs como nas descrições dos commits.
 - Criar um arquivo de markdown (.md) descrevendo o processo de instalação e configuração das duas aplicações.
 - Incluir arquivo de documentação (swagger, openapi, postman) com as requisições executadas.
