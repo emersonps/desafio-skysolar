@@ -6,7 +6,7 @@ Realize um fork deste projeto em seu github e desenvolva o projeto utilizando o 
 
 Requisitos:
 - Será necessário desenvolver duas aplicações em linguagem PHP sendo um voltada ao frontend e outra ao backend.
-- Utilizar um design básico nas telas de frontend com o bootstrap simples.
+- Utilizar um design básico nas telas de frontend com o bootstrap.
 - Será verificado também o uso do git, tanto na montagem das branchs como nas descrições dos commits.
 - Criar um arquivo de markdown (.md) descrevendo o processo de instalação e configuração das duas aplicações.
 
@@ -14,19 +14,28 @@ Requisitos:
 
 - A aplicação precisa ser estruturada como se fosse uma API recebendo as reguisições HTTP POST/GET/PUT/DELETE.
 - Os dados recebidos e enviados desta API precisarão ser em formato JSON.  
-- A aplicação precisará inserir os dados em uma tabela de pessoa no banco de dados MySql.
+- A aplicação precisará inserir os dados em uma tabela de pessoa e endereços no banco de dados MySql.
+- Será possível cadastrar N endereços para esta pessoa.
 - Criar uma pasta com os scripts de criação do banco de dados.
+- A API precisará ser protegida por um bearer token.
 
-Dados da Pessoa
+### Dados da Pessoa
 - Nome completo
 - RG, CPF
 - Data de nascimento
-- Endereço Completo
+- Endereço Principal e Secundário
   - CEP
   - Logradouro completo
   - Bairro
   - Cidade
   - Estado
+
+### Status das requisições
+- 200 - OK
+- 401 - Não autenticado
+- 400 - Erro tratado pela aplicação
+- 404 - Rota não encontrada
+- 500 - Erro não previsto
 
 ## Aplicação 02 - Frontend
 
@@ -34,6 +43,8 @@ A aplicação precisa fazer requisições na api desenvolvida de backend com as 
 - Listagem de pessoas cadastradas com opção para alterar e remover a pessoa cadastrada
 - Formulário de cadastro de pessoa
 - Formulário de alteração de pessoa
+- Opção para excluir uma pessoa
+- Tela responsiva
 
 Com relação aos frameworks, utilizar:
 - [Bootstrap versão 4.6](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
