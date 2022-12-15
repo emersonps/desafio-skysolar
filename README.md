@@ -9,6 +9,7 @@ Requisitos:
 - Utilizar um design básico nas telas de frontend com o bootstrap.
 - Será verificado também o uso do git, tanto na montagem das branchs como nas descrições dos commits.
 - Criar um arquivo de markdown (.md) descrevendo o processo de instalação e configuração das duas aplicações.
+- Incluir arquivo de documentação (swagger, openapi, postman) com as requisições executadas.
 
 ## Aplicação 01 - Backend
 
