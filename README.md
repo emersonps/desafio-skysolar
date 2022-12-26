@@ -38,6 +38,10 @@ Requisitos:
 - 404 - Rota não encontrada
 - 500 - Erro não previsto
 
+Com relação aos frameworks, utilizar:
+- [Koseven](https://github.com/koseven/koseven)
+- ou [Slim Framework](https://www.slimframework.com/)
+
 ## Aplicação 02 - Frontend
 
 A aplicação precisa fazer requisições na api desenvolvida de backend com as seguintes telas:
