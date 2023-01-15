@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\DAO\MySQL\Skysolar\UsuariosDAO;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
@@ -14,7 +15,10 @@ final class UserController
             "msg" => "Hello Wrold!"
         ]);
 
-        return $response; 
+        $usuarioDAO = new UsuariosDAO();
+        $usuarioDAO->teste();
+
+        return $response; ;
     }
 }
 
