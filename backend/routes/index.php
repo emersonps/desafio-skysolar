@@ -3,8 +3,12 @@
 use function src\slimConfiguration;
 use App\Controllers\UsuarioController;
 use App\Controllers\EnderecoController;
+use App\Controllers\ExceptionController;
 
 $app = new \Slim\App(slimConfiguration());
+
+//Rota de teste de exceptions
+$app->get('/exception-test', ExceptionController::class . ':test');
 
 //Rotas Usuário
 $app->get('/usuario', UsuarioController::class . ':getUsuarios');
