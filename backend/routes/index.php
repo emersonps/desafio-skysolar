@@ -7,14 +7,26 @@ use App\Controllers\ExceptionController;
 
 $app = new \Slim\App(slimConfiguration());
 
+//Versionamento de API
+$app->group('/v1', function () use ($app) {
+    $app->get('/test-with-versions', function () {
+        return "oi v1";});
+});
+
+$app->group('/v2', function () use ($app) {
+    $app->get('/test-with-versions', function () {
+        return "oi v2";});
+});
+
 //Rota de teste de exceptions
 $app->get('/exception-test', ExceptionController::class . ':test');
 
 //Rotas Usuário
 $app->get('/usuario', UsuarioController::class . ':getUsuarios');
+$app->get('/usuario/{id}', UsuarioController::class . ':getUsuario');
 $app->post('/usuario', UsuarioController::class . ':insertUsuario');
-$app->put('/usuario', UsuarioController::class . ':updateUsuario');
-$app->delete('/usuario', UsuarioController::class . ':deleteUsuario');
+$app->put('/usuario/{id}', UsuarioController::class . ':updateUsuario');
+$app->delete('/usuario/{id}', UsuarioController::class . ':deleteUsuario');
 
 //Rotas Endereço
 $app->get('/endereco', EnderecoController::class . ':getEnderecos');

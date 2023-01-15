@@ -18,6 +18,16 @@ final class UsuarioController
         return $response;
     }
 
+    public function getUsuario(Request $request, Response $response, array $args): Response
+    {
+        $usuariosDAO = new UsuariosDAO();
+        $usuarios = $usuariosDAO->getUsuario($args['id']);
+        
+        $response = $response->withJson($usuarios);
+
+        return $response;
+    }
+
     public function insertUsuario(Request $request, Response $response, array $args): Response
     {
         $data = $request->getParsedBody();
@@ -40,20 +50,22 @@ final class UsuarioController
     }
     public function updateUsuario(Request $request, Response $response, array $args): Response
     {
+        $data = $request->getParsedBody();
+
+        $usuarioDAO = new UsuariosDAO();
+        
+        $usuarioDAO->updatetUsuario($data, $args['id']);
+        
         $response = $response->withJson([
-            "msg" => "put usuarios testado"
+            'message' => 'Usuário alterado com sucesso!' 
         ]);
 
         return $response;
     }
     public function deleteUsuario(Request $request, Response $response, array $args): Response
     {
-        $data = $request->getParsedBody();
-
-        $usuarioDAO = new UsuariosDAO();
-        
-        $usuario = new UsuarioModel();
-        $usuarioDAO->deleteUsuario($data['id']);
+        $usuariosDAO = new UsuariosDAO();
+        $usuariosDAO->deleteUsuario($args['id']);
         
         $response = $response->withJson([
             'message' => 'Usuário excluído com sucesso!' 

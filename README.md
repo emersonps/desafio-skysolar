@@ -1,3 +1,25 @@
+Para executar alterações no projeto é necessário ter instalado e configurado em sua máquina:
+Composer (gerenciador de pacotes php)
+Git (comandos de atualizações no repositório)
+PHP8 (linguagem principal)
+MySQL8 (Base de dados)
+Visual Studio (IDE para codificação)
+Insomnia (Para teste de API)
+
+1. Clone o projeto na unidade c: (opcional)
+2. Abra o cmd (prompt de comando do windows)
+3. Execute o seguinte comando: cd c:\desafio-skysolar <enter>
+4. Execute o comando composer install
+5. Execute o comando para rodar o php -S localhost:8080 -t backend backend/index.php 
+6. Acesso localhost:8080 pelo navegador de sua preferência 
+7. Rode os comandos SQL do arquivo: desafio-skysolar/backend/db/comandos.sql, com o SGDB MySql
+8. Abra o INSOMNIA e teste as rotas ou teste pelo navegador:
+para cada verbo utilize /usuario
+  Exemplo:  GET: localhost:8080/usuario
+            POST: localhost:8080/usuario
+
+
+
 # Desafio Programador Sky Solar
 
 Este desafio consiste no desenvolvimento de um pequeno sistema para demonstrar seus conhecimentos na linguagem PHP.
