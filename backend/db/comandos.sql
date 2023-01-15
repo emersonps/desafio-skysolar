@@ -56,5 +56,27 @@ FROM usuarios
 INNER JOIN enderecos on enderecos.usuario_id = usuarios.id
 WHERE
 	nome_completo like 'Emerson%'
-ORDER BY enderecos.estado
-;
+ORDER BY enderecos.estado;
+
+#atualizando dados da tabela
+UPDATE enderecos
+SET 
+	usuario_id = 1
+WHERE
+	id = 2 AND
+    usuario_id = 2;
+
+#inserindo e listando novos registros
+
+insert into usuarios(nome_completo, rg, cpf, dt_nascimento) 
+values('Maria José','1211353','33898354', '1993-02-17');
+
+insert into usuarios(nome_completo, rg, cpf, dt_nascimento) 
+values('Paulo Lima','3211353','33898352', '1956-02-17');
+
+select * 
+from usuarios;
+
+#Exclusão de registros
+DELETE FROM usuarios
+WHERE id = 3 OR id = 4;
