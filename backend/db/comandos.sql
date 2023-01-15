@@ -38,7 +38,23 @@ insert into enderecos(usuario_id, cep, logradouro, bairro, cidade, estado)
 values(2, '69028347','Rua Ademar de Barros, 20-B - Sta Cruz','Flores', 'Manaus', 'AM');
 
 #listagem de usuários
-select * from usuarios;
+select * 
+from usuarios;
 
 #listagem de endereços
-select * from enderecos;
+select * 
+from enderecos;
+
+#seleção de endereços relacionados a um usuário
+SELECT
+	usuarios.nome_completo as usuario,
+    enderecos.cep as cep,
+    enderecos.logradouro as logradouro,
+    enderecos.cidade as cidade,
+    enderecos.estado as estado
+FROM usuarios
+INNER JOIN enderecos on enderecos.usuario_id = usuarios.id
+WHERE
+	nome_completo like 'Emerson%'
+ORDER BY enderecos.estado
+;
