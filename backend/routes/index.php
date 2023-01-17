@@ -4,6 +4,7 @@ use function src\slimConfiguration;
 use App\Controllers\UsuarioController;
 use App\Controllers\EnderecoController;
 use App\Controllers\ExceptionController;
+use App\Controllers\HomeController;
 
 $app = new \Slim\App(slimConfiguration());
 
@@ -33,5 +34,8 @@ $app->get('/endereco', EnderecoController::class . ':getEnderecos');
 $app->post('/endereco', EnderecoController::class . ':insertEndereco');
 $app->put('/endereco', EnderecoController::class . ':updateEndereco');
 $app->delete('/endereco', EnderecoController::class . ':deleteEndereco');
+
+
+$app->get('/', HomeController::class . ':index');
 
 $app->run();
