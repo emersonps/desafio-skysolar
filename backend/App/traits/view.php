@@ -7,7 +7,7 @@ trait View{
     protected $twig;
 
     protected function twig(){
-        $loader = new \Twig_Loader_Filesystem('App/views');
+        $loader = new \Twig_Loader_Filesystem('../frontend/views');
 
         $this->twig = new \Twig_Environment($loader, [
             // 'cache' => '/path/compilation_cache',
