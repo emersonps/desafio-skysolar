@@ -1,0 +1,75 @@
+{% extends 'master.html' %}
+
+{% block master %}
+
+<h2>Cadastrar usuário</h2>
+
+<div class="container form-control">
+    <form class="row g-3" action="novo" method="post" name="usuarioform">
+        <div class="col-md-6">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="nome" class="form-control" id="nome" name="nome">
+        </div>
+        <div class="col-md-6">
+            <label for="rg" class="form-label">RG</label>
+            <input type="text" class="form-control" id="rg" name="rg">
+        </div>
+        <div class="col-md-6">
+            <label for="cpf" class="form-label">CPF</label>
+            <input type="text" class="form-control" id="cpf" name="cpf">
+        </div>
+        <div class="col-md-6">
+            <label for="nascimento" class="form-label">Nascimento</label>
+            <input type="text" class="form-control" id="nascimento" name="nascimento">
+        </div>
+
+        <h4>Endereço 1</h4>
+        <div class="col-12">
+            <label for="logradouro" class="form-label">Logradouro Completo</label>
+            <input type="text" class="form-control" id="logradouro" placeholder="Rua, número e bairro" name="logradouro">
+        </div>
+        <div class="col-md-2">
+            <label for="cep" class="form-label">CEP</label>
+            <input type="text" class="form-control" id="cep" name="cep">
+        </div>
+        <div class="col-md-6">
+            <label for="cidade" class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="cidade" name="cidade">
+        </div>
+        <div class="col-md-4">
+            <label for="estado" class="form-label">Estado</label>
+            <select id="estado" class="form-select" name="estado">
+                <option selected>Manaus</option>
+                <option>...</option>
+            </select>
+        </div>
+
+        <h4>Endereço 2</h4>
+        <div class="col-12">
+            <label for="logradouro" class="form-label">Logradouro Completo</label>
+            <input type="text" class="form-control" id="logradouro" placeholder="1234 Main St" name="logradouro2">
+        </div>
+        <div class="col-md-2">
+            <label for="cep" class="form-label">CEP</label>
+            <input type="text" class="form-control" id="cep" name="cep2">
+        </div>
+        <div class="col-md-6">
+            <label for="cidade" class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="cidade" name="cidade2">
+        </div>
+        <div class="col-md-4">
+            <label for="estado" class="form-label">Estado</label>
+            <select id="estado" class="form-select" name="estado2">
+                <option selected>São Paulo</option>
+                <option>...</option>
+            </select>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Salvar registro</button>
+        </div>
+    </form>
+</div>
+<br>
+<br>
+{% endblock %}
