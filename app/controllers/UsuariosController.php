@@ -82,15 +82,17 @@ class UsuariosController extends Controller
 
         return $response;
     }
-    public function deleteUsuario(Request $request, Response $response, array $args): Response
+    public function getDelete(Request $request, Response $response, array $args)
     {
+        var_dump($args['id']);
+      
         $usuariosDAO = new UsuariosDAO();
         $usuariosDAO->deleteUsuario($args['id']);
 
         $response = $response->withJson([
-            'message' => 'Usuário excluído com sucesso!'
+            'alert' => 'Usuário excluído com sucesso!'
         ]);
 
-        return $response;
+        return $this->view('home', []);
     }
 }
