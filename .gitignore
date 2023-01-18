@@ -1,6 +1,0 @@
-backend/vendor/
-backend/.buldpath
-backend/.project
-backend/.settings/
-backend/composer.lock
-backend/env.php
