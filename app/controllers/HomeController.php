@@ -14,4 +14,12 @@ class HomeController extends Controller
             'nome' => 'Skysolar',
         ]);
     }
+
+    public function about()
+    {
+        $this->view('about', [
+            'title' => 'Skysolar',
+            'nome' => 'Skysolar',
+        ]);
+    }
 }
