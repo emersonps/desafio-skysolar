@@ -8,6 +8,9 @@ use Slim\Http\Response;
 use \app\DAO\MySQL\Skysolar\UsuariosDAO;
 use \app\Models\MySQL\Skysolar\UsuarioModel;
 
+use \app\DAO\MySQL\Skysolar\EnderecosDAO;
+use \app\Models\MySQL\Skysolar\EnderecoModel;
+
 class UsuariosController extends Controller
 {
     protected $post;
@@ -33,8 +36,6 @@ class UsuariosController extends Controller
     {
         $data = $request->getParsedBody();
 
-        $data = $request->getParsedBody();
-
         $usuarioDAO = new UsuariosDAO();
 
         $usuario = new UsuarioModel();
@@ -43,30 +44,58 @@ class UsuariosController extends Controller
             ->setCpf($data['cpf'])
             ->setNascimento($data['nascimento']);
 
-        $usuarioDAO->insertUsuario($usuario);
+        $usuario = $usuarioDAO->insertUsuario($usuario);
 
-        return $this->view('home', []);
+        // Array para armazenar os dois endereços
+        $endederecos = [
+            1 => [
+                    'cep' => $data['cep'],
+                    'logradouro' => $data['logradouro'],
+                    'cidade' => $data['cidade'],
+                    'estado' => $data['estado'],
+                    'id_usuario' => $usuario,
+                ],
+            2 => [
+                    'cep' => $data['cep2'],
+                    'logradouro' => $data['logradouro2'],
+                    'cidade' => $data['cidade2'],
+                    'estado' => $data['estado2'],
+                    'id_usuario' => $usuario,
+                ]
+        ];
+
+        $enderecoDAO = new EnderecosDAO();
+
+        // Armazena endereço de cada vez, se não tiver campo preenchido nos ou em um deles endereço não será inserido
+        foreach($endederecos as $end){
+            if($end['cep'] || $end['logradouro'] || $end['cidade']){
+
+                $endereco = new EnderecoModel();
+                
+                $endereco->setCep($end['cep'])
+                    ->setLogradouro($end['logradouro'])
+                    ->setCidade($end['cidade'])
+                    ->setEstado($end['estado'])
+                    ->setUsuario_id($end['id_usuario']);
+                
+                $enderecoDAO->insertEndereco($endereco);
+            }
+        }
+        
+        return $this->view('home', ['message' => 'Usuário cadastrado com sucesso!']);
     }
-    
-    public function getUsuarios(Request $request, Response $response, array $args): Response
+
+    public function getView(Request $request, Response $response, array $args)
     {
         $usuariosDAO = new UsuariosDAO();
-        $usuarios = $usuariosDAO->getAllUsuarios();
-        $response = $response->withJson($usuarios);
+        $enderecosDAO = new EnderecosDAO();
 
-        return $response;
+        $usuario = $usuariosDAO->getUsuario($args['id']);
+
+        $enderecos = $enderecosDAO->getEndereco($args['id']);
+        
+        return $this->view('usuarioview', ['user' => $usuario[0], 'enderecos' => $enderecos, 'title' => 'Usuário']);
     }
-
-    public function getUsuario(Request $request, Response $response, array $args): Response
-    {
-        $usuariosDAO = new UsuariosDAO();
-        $usuarios = $usuariosDAO->getUsuario($args['id']);
-
-        $response = $response->withJson($usuarios);
-
-        return $response;
-    }
-
    
     public function updateUsuario(Request $request, Response $response, array $args): Response
     {
@@ -83,9 +112,7 @@ class UsuariosController extends Controller
         return $response;
     }
     public function getDelete(Request $request, Response $response, array $args)
-    {
-        var_dump($args['id']);
-      
+    {     
         $usuariosDAO = new UsuariosDAO();
         $usuariosDAO->deleteUsuario($args['id']);
 

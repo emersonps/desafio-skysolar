@@ -13,8 +13,6 @@
             <th scope="col">RG</th>
             <th scope="col">CPF</th>
             <th scope="col">Nascimento</th>
-            <th scope="col">Endereço 1</th>
-            <th scope="col">Endereço 2</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -26,11 +24,9 @@
             <td>{{ user.rg }}</td>
             <td>{{ user.cpf }}</td>
             <td>{{ user.dt_nascimento }}</td>
-            <td>#</td>
-            <td>#</td>
             <td class="d-grid gap-2 d-md-block">
-                <button type="button" class="btn btn btn-outline-success btn-sm">Visualizar</button>
-                <button type="button" class="btn btn btn-outline-primary btn-sm">Alterar</button>
+                <a href="visualizar/{{user.id}}" type="button" class="btn btn btn-outline-success btn-sm">Visualizar</a>
+                <button type="button" class="btn btn btn-outline-primary btn-sm" onclick="visualizar('{{user.id}}')">Alterar</button>
                 <button type="button" class="btn btn btn-outline-danger btn-sm" id="btn_excluir" onclick="excluir('{{user.id}}')">Excluir</button>
             </td>
         </tr>

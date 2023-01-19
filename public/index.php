@@ -22,6 +22,11 @@ $app->group('/usuario', function () use ($app) {
     $app->get('/delete/{id}', 'app\controllers\UsuariosController:getDelete');
 });
 
+$app->group('/endereco', function () use ($app) {
+    $app->get('/novo', 'app\controllers\EnderecoController:getCreateForm');
+});
+
+
 
 
 $app->get('/user/{id}', 'app\controllers\HomeController:show');

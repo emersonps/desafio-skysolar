@@ -40,7 +40,7 @@ class UsuariosDAO extends Conexao
 
         return $usuarios;
     }
-    public function insertUsuario(UsuarioModel $usuario): void
+    public function insertUsuario(UsuarioModel $usuario): int
     {
         $statement = $this->pdo
             ->prepare('INSERT INTO usuarios VALUES(
@@ -50,12 +50,15 @@ class UsuariosDAO extends Conexao
             :cpf,
             :dt_nascimento
         );');
+
         $statement->execute([
             'nome_completo' => $usuario->getNome(),
             'rg' => $usuario->getRg(),
             'cpf' => $usuario->getCpf(),
             'dt_nascimento' => $usuario->getNascimento()
         ]);
+
+        return $this->pdo->lastInsertId(); 
     }
 
     /**
