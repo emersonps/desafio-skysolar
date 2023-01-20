@@ -35,11 +35,50 @@ class UsuariosDAO extends Conexao
                 cpf,
                 dt_nascimento
                 FROM usuarios WHERE
-                id='.$id)
+                id=' . $id)
             ->fetchAll(\PDO::FETCH_ASSOC);
 
         return $usuarios;
     }
+
+    public function getSearchUsuario(string $val): array
+    {
+        $usuarios = $this->pdo
+            ->query("SELECT
+                nome_completo,
+                rg,
+                cpf,
+                dt_nascimento
+                FROM usuarios WHERE
+                nome_completo like '%$val%'")
+            ->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $usuarios;
+    }
+
+    public function getUsuarioEndereco(int $id): array
+    {
+        $usuario = $this->pdo
+            ->query("SELECT
+                    u.nome_completo,
+                    u.rg,
+                    u.cpf,
+                    u.dt_nascimento,
+                    e.id as id_endereco,
+                    e.cep as cep,
+                    e.logradouro as logradouro,
+                    e.cidade as cidade,
+                    e.estado as estado,
+                    e.usuario_id as usuario 
+                FROM usuarios as u
+                LEFT JOIN enderecos as e on e.usuario_id = u.id
+                WHERE
+                u.id = $id")
+            ->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $usuario;
+    }
+
     public function insertUsuario(UsuarioModel $usuario): int
     {
         $statement = $this->pdo
@@ -58,7 +97,7 @@ class UsuariosDAO extends Conexao
             'dt_nascimento' => $usuario->getNascimento()
         ]);
 
-        return $this->pdo->lastInsertId(); 
+        return $this->pdo->lastInsertId();
     }
 
     /**
@@ -69,21 +108,14 @@ class UsuariosDAO extends Conexao
      */
     public function updatetUsuario(array $data, int $id): void
     {
-        die('1');
-        
         $statement = $this->pdo
             ->prepare("UPDATE usuarios SET 
-                id = :id,
                 nome_completo = :nome_completo,
                 rg = :rg,
                 cpf = :cpf,
-                dt_nascimento = :dt_nascimento WHERE id=:id
+                dt_nascimento = :dt_nascimento WHERE id={$id}
             ");
-        // var_dump($statement);
-        // die;
-
         $statement->execute([
-            'id' => $id,
             'nome_completo' => $data['nome_completo'],
             'rg' => $data['rg'],
             'cpf' => $data['cpf'],
@@ -91,7 +123,7 @@ class UsuariosDAO extends Conexao
         ]);
     }
 
-    public function deleteUsuario(int $id) : void
+    public function deleteUsuario(int $id): void
     {
         $statement = $this->pdo
             ->prepare('DELETE FROM usuarios WHERE id = :id');
@@ -100,6 +132,3 @@ class UsuariosDAO extends Conexao
         ]);
     }
 }
-
-
-

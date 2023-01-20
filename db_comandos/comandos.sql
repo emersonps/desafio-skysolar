@@ -2,16 +2,6 @@
 CREATE database SKYSOLAR CHARACTER SET utf8 COLLATE UTF8_GENERAL_CI;
 USE SKYSOLAR;
 
-#criação da tabela usuários
-create table usuarios(
-	id int unsigned not null auto_increment,
-    nome_completo varchar(100) not null,
-	rg varchar(20), 
-    cpf varchar(20),
-	dt_nascimento date,
-    primary key(id)
-);
-
 #criação da tabela endereços
 create table enderecos(
 	id int unsigned not null auto_increment,
@@ -49,13 +39,17 @@ from enderecos;
 
 #seleção de endereços relacionados a um usuário
 SELECT
-    enderecos.cep as cep,
-    enderecos.logradouro as logradouro,
-    enderecos.cidade as cidade,
-    enderecos.estado as estado,
-    enderecos.usuario_id as usuario
-FROM usuarios
-INNER JOIN enderecos on enderecos.usuario_id = usuarios.id
+	u.nome_completo,
+    u.rg,
+    u.cpf,
+    u.dt_nascimento,
+    e.cep as cep,
+    e.logradouro as logradouro,
+    e.cidade as cidade,
+    e.estado as estado,
+    e.usuario_id as usuario
+FROM usuarios as u
+INNER JOIN enderecos as e on e.usuario_id = u.id
 WHERE
 	usuario_id = '121';
 
@@ -86,3 +80,49 @@ DELETE FROM usuarios
 WHERE id = 3 OR id = 4;
 
 SELECT cep, logradouro, usuario_id FROM enderecos GROUP BY usuario_id;
+
+
+
+
+
+
+SELECT
+		u.nome_completo,
+		u.rg,
+		u.cpf,
+		u.dt_nascimento,
+		e.id as endereco_
+		e.cep as cep,
+		e.logradouro as logradouro,
+		e.cidade as cidade,
+		e.estado as estado,
+		e.usuario_id as usuario_id
+	FROM usuarios as u
+	LEFT JOIN enderecos as e on e.usuario_id = u.id
+	WHERE
+		u.id = 161;
+        
+	
+UPDATE usuarios SET 
+		nome_completo = 'Paulo Gama',
+		rg = '44444556',
+		cpf = '447844574',
+		dt_nascimento = '1960-05-01' WHERE id=161;
+        
+UPDATE enderecos SET
+    cep = '695555', 
+    logradouro = 'Rua 2, 15 - Sta Cruz',
+    bairro = 'Flores',
+    cidade = 'Rio de Janeiro', 
+    estado = 'RJ' WHERE id = 42;
+    
+    
+SELECT
+	nome_completo,
+	rg,
+	cpf,
+	dt_nascimento
+	FROM usuarios WHERE
+	nome_completo like '%Emerson%';
+                
+select * from usuarios where id = 161;

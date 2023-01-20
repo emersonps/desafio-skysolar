@@ -3,75 +3,80 @@
 {% block master %}
 
 <h2>Cadastrar usuário</h2>
-
+{{endereco.0.id_endereco}}
+{{endereco.1.id_endereco}}
 <div class="container form-control">
-    <form class="row g-3" action="novo" method="post" name="usuarioform">
+    <form class="row g-3" action="/usuario/update" method="post" name="usuarioform">
         <div class="col-md-6">
             <label for="nome" class="form-label">Nome</label>
-            <input type="nome" class="form-control" id="nome" name="nome" required>
+            <input type="nome" class="form-control" id="nome" name="usuario_nome"                 value="{{ endereco.0.nome_completo }}">
             <div class="invalid-feedback">
                 Please choose a username.
             </div>
         </div>
         <div class="col-md-6">
             <label for="rg" class="form-label">RG</label>
-            <input type="text" class="form-control" id="rg" name="rg">
+            <input type="text" class="form-control" id="rg" name="usuario_rg" value="{{ endereco.0.rg }}">
         </div>
         <div class="col-md-6">
             <label for="cpf" class="form-label">CPF</label>
-            <input type="text" class="form-control" id="cpf" name="cpf">
+            <input type="text" class="form-control" id="cpf" name="usuario_cpf" value="{{ endereco.0.cpf }}">
         </div>
         <div class="col-md-6">
             <label for="nascimento" class="form-label">Nascimento</label>
-            <input type="text" class="form-control" id="nascimento" name="nascimento" required>
+            <input type="text" class="form-control" id="nascimento" name="usuario_nascimento"                 value="{{ endereco.0.dt_nascimento }}">
         </div>
 
         <h4>Endereço 1</h4>
         <div class="col-12">
             <label for="logradouro" class="form-label">Logradouro Completo</label>
-            <input type="text" class="form-control" id="logradouro" placeholder="Rua, número e bairro" name="logradouro" required>
+            <input type="text" class="form-control" id="logradouro" placeholder="Rua, número e bairro" name="logradouro_0" value="{{ endereco.1.logradouro }}">
         </div>
         <div class="col-md-2">
             <label for="cep" class="form-label">CEP</label>
-            <input type="text" class="form-control" id="cep" name="cep" required>
+            <input type="text" class="form-control" id="cep" name="cep_0" value="{{endereco.1.cep}}">
         </div>
         <div class="col-md-6">
             <label for="cidade" class="form-label">Cidade</label>
-            <input type="text" class="form-control" id="cidade" name="cidade" required>
+            <input type="text" class="form-control" id="cidade" name="cidade_0" value="{{endereco.1.cidade}}">
         </div>
         <div class="col-md-4">
             <label for="estado" class="form-label">Estado</label>
-            <select id="estado" class="form-select" name="estado" required>
-                <option selected>Amazonas</option>
-                <option selected>Pará</option>
-                <option selected>São Paulo</option>
+            <select id="estado" class="form-select" name="estado_0">
+                <option selected>{{endereco.1.estado}}</option>
+                <option>Amazonas</option>
+                <option>São Paulo</option>
                 <option>...</option>
             </select>
         </div>
+        <input type="hidden" name="id_endereco_0" value="{{ endereco.0.id_endereco }}">
 
+        
         <h4>Endereço 2</h4>
         <div class="col-12">
             <label for="logradouro" class="form-label">Logradouro Completo</label>
-            <input type="text" class="form-control" id="logradouro" placeholder="1234 Main St" name="logradouro2">
+            <input type="text" class="form-control" id="logradouro" placeholder="Rua, número e bairro" name="logradouro_1" value="{{ endereco.0.logradouro }}">
         </div>
         <div class="col-md-2">
             <label for="cep" class="form-label">CEP</label>
-            <input type="text" class="form-control" id="cep" name="cep2">
+            <input type="text" class="form-control" id="cep" name="cep_1" value="{{endereco.0.cep}}">
         </div>
         <div class="col-md-6">
             <label for="cidade" class="form-label">Cidade</label>
-            <input type="text" class="form-control" id="cidade" name="cidade2">
+            <input type="text" class="form-control" id="cidade" name="cidade_1" value="{{endereco.0.cidade}}">
         </div>
         <div class="col-md-4">
             <label for="estado" class="form-label">Estado</label>
-            <select id="estado" class="form-select" name="estado2">
-                <option selected>Amazonas</option>
-                <option selected>Pará</option>
-                <option selected>São Paulo</option>
+            <select id="estado" class="form-select" name="estado_1">
+                <option selected>{{endereco.0.estado}}</option>
+                <option>Amazonas</option>
+                <option>São Paulo</option>
                 <option>...</option>
             </select>
         </div>
+        <input type="hidden" name="id_endereco_1" value="{{ endereco.0.id_endereco }}">
 
+        <input type="hidden" name="id" value="{{ id }}">
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Salvar registro</button>
         </div>

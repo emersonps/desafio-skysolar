@@ -35,7 +35,7 @@ class enderecosDAO extends Conexao
                         SELECT * 
                         FROM 
                         enderecos WHERE usuario_id = {$id}")
-                        ->fetchAll(\PDO::FETCH_ASSOC);
+            ->fetchAll(\PDO::FETCH_ASSOC);
         return $endereco;
     }
     public function insertEndereco(EnderecoModel $endereco): void
@@ -67,30 +67,27 @@ class enderecosDAO extends Conexao
      * @param int $id
      * @return void
      */
-    public function updatetUsuario(array $data, int $id): void
+
+    public function updatetEndereco(array $data, int $id): void
     {
-
+        dd($id);
+        
         $statement = $this->pdo
-            ->prepare("UPDATE endereco SET 
-                id = :id,
-                cep = :cep,
+            ->prepare("UPDATE enderecos SET 
                 logradouro = :logradouro,
-                bairro = :bairro,
-                cidade = :cidade WHERE id=:id
+                cep = :cep,
+                cidade = :cidade,
+                estado = :estado WHERE id={$id}
             ");
-        // var_dump($statement);
-        // die;
-
         $statement->execute([
-            'id' => $id,
-            'cep' => $data['cep'],
             'logradouro' => $data['logradouro'],
-            'bairro' => $data['bairro'],
-            'cidade' => $data['cidade']
+            'cep' => $data['cep'],
+            'cidade' => $data['cidade'],
+            'estado' => $data['estado']
         ]);
     }
 
-    public function deleteUsuario(int $id) : void
+    public function deleteUsuario(int $id): void
     {
         $statement = $this->pdo
             ->prepare('DELETE FROM endereco WHERE id = :id');
@@ -99,6 +96,3 @@ class enderecosDAO extends Conexao
         ]);
     }
 }
-
-
-

@@ -121,7 +121,8 @@ class App
      *
      * @return RouteInterface
      */
-    public function get($pattern, $callable)
+    public function 
+    get($pattern, $callable)
     {
         return $this->map(['GET'], $pattern, $callable);
     }
