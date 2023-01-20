@@ -69,7 +69,8 @@ class UsuariosDAO extends Conexao
      */
     public function updatetUsuario(array $data, int $id): void
     {
-
+        die('1');
+        
         $statement = $this->pdo
             ->prepare("UPDATE usuarios SET 
                 id = :id,

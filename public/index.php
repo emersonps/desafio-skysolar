@@ -21,7 +21,7 @@ $app->group('/usuario', function () use ($app) {
     $app->post('/novo', 'app\controllers\UsuariosController:getCreate');
     $app->get('/visualizar/{id}', 'app\controllers\UsuariosController:getView');
     $app->get('/list', 'app\controllers\UsuariosController:getList');
-    $app->put('/update/{id}', 'app\controllers\UsuariosController:getUpdate');
+    $app->put('/alterar/{id}', 'app\controllers\UsuariosController:getUpdate');
     $app->get('/delete/{id}', 'app\controllers\UsuariosController:getDelete');
 });
 

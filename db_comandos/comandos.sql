@@ -85,3 +85,4 @@ from enderecos;
 DELETE FROM usuarios
 WHERE id = 3 OR id = 4;
 
+SELECT cep, logradouro, usuario_id FROM enderecos GROUP BY usuario_id;

@@ -82,7 +82,7 @@ class UsuariosController extends Controller
             }
         }
         
-        return $this->view('home', ['message' => 'Usuário cadastrado com sucesso!']);
+        return $this->redirect("visualizar/{$end['id_usuario']}");
     }
 
     public function getView(Request $request, Response $response, array $args)
@@ -96,8 +96,8 @@ class UsuariosController extends Controller
         
         return $this->view('usuarioview', ['user' => $usuario[0], 'enderecos' => $enderecos, 'title' => 'Usuário']);
     }
-   
-    public function updateUsuario(Request $request, Response $response, array $args): Response
+
+    public function getUpdate(Request $request, Response $response, array $args): Response
     {
         $data = $request->getParsedBody();
 
@@ -109,7 +109,8 @@ class UsuariosController extends Controller
             'message' => 'Usuário alterado com sucesso!'
         ]);
 
-        return $response;
+        return redirect('home');
+
     }
     public function getDelete(Request $request, Response $response, array $args)
     {     
