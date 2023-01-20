@@ -2,6 +2,16 @@
 CREATE database SKYSOLAR CHARACTER SET utf8 COLLATE UTF8_GENERAL_CI;
 USE SKYSOLAR;
 
+#criação da tabela usuários
+create table usuarios(
+	id int unsigned not null auto_increment,
+    nome_completo varchar(100) not null,
+	rg varchar(20), 
+    cpf varchar(20),
+	dt_nascimento date,
+    primary key(id)
+);
+
 #criação da tabela endereços
 create table enderecos(
 	id int unsigned not null auto_increment,
