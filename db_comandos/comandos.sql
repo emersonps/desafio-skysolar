@@ -27,6 +27,7 @@ CREATE TABLE enderecos(
     primary key(id),
 	CONSTRAINT fk_enderecos_usuario_usuario_id
 		FOREIGN KEY(usuario_id) REFERENCES usuarios(id)
+		ON DELETE CASCADE
 );
 
 # INSERÇÃO DE USUÁRIOS
@@ -45,15 +46,31 @@ VALUE('Emilly Araújo','15111444','55588597858', '2008-11-15');
 SELECT * FROM usuarios;
 
 #INSERÇÃO DE ENDEREÇOS
-#Usuário 1 possui 2 endereços
+#Usuário possui 2 endereços
 INSERT INTO enderecos(cep, logradouro, bairro, cidade, estado, usuario_id) 
 VALUES('69028347','Rua Ademar de Barros, 20 - Sta Cruz','Flores', 'Manaus', 'AM', 1);
 INSERT INTO enderecos(cep, logradouro, bairro, cidade, estado, usuario_id) 
 VALUES('69028320','Rua 1, 12','Compensa', 'Manaus', 'AM', 1);
 
-#Usuário 2 possui 1 endereço
 INSERT INTO enderecos(cep, logradouro, bairro, cidade, estado, usuario_id) 
-VALUES('69000000','Rua Barão de Indaiá, 124-A','Pq das Laranjeiras', 'Manaus', 'AM', 2);
+VALUES('69000000','Rua 3, 12','São José', 'Manaus', 'AM', 2);
+INSERT INTO enderecos(cep, logradouro, bairro, cidade, estado, usuario_id) 
+VALUES('69000000','Rua 7, 124-A','Pq das Laranjeiras', 'Manaus', 'AM', 2);
+
+INSERT INTO enderecos(cep, logradouro, bairro, cidade, estado, usuario_id) 
+VALUES('69000000','Rua Barão de Indaiá, 124-A','Pq das Laranjeiras', 'Manaus', 'AM', 3);
+INSERT INTO enderecos(cep, logradouro, bairro, cidade, estado, usuario_id) 
+VALUES('69000000','Rua Barão de Indaiá, 124-A','Pq das Laranjeiras', 'Manaus', 'AM', 3);
+
+INSERT INTO enderecos(cep, logradouro, bairro, cidade, estado, usuario_id) 
+VALUES('69000000','Rua Barão de Indaiá, 124-A','Pq das Laranjeiras', 'Manaus', 'AM', 4);
+INSERT INTO enderecos(cep, logradouro, bairro, cidade, estado, usuario_id) 
+VALUES('69000000','Rua Barão de Indaiá, 124-A','Pq das Laranjeiras', 'Manaus', 'AM', 4);
+
+INSERT INTO enderecos(cep, logradouro, bairro, cidade, estado, usuario_id) 
+VALUES('69000000','Rua Barão de Indaiá, 124-A','Pq das Laranjeiras', 'Manaus', 'AM', 5);
+INSERT INTO enderecos(cep, logradouro, bairro, cidade, estado, usuario_id) 
+VALUES('69000000','Rua Barão de Indaiá, 124-A','Pq das Laranjeiras', 'Manaus', 'AM', 5);
 
 #Lista de endereços
 SELECT * 
