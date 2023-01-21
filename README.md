@@ -23,6 +23,17 @@ display_errors = off;
 php -S localhost:8080 -t public
 
 
+SOBRE OS TESTES DE API - POSTIMAN
+
+1. Rode o projeto: php -S localhost:8080 -t public
+2. Acesse o link de convite para teste da API via Postman:
+https://lively-trinity-387669.postman.co/workspace/5fe49ba2-9f74-4ea4-a146-d3a1798aa515/collection/9386844-7e73df70-6bf3-4a14-9bbe-c05c712cd386?action=share&creator=9386844
+3. Autorização (basic auth): 
+username: skysolar
+password: skysolar
+4. A documentação encontra-se registrada no projeto API
+
+
 
 
 
