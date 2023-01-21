@@ -1,9 +1,12 @@
 #criação do banco de dados
+# Criação da base de dados 
 CREATE database SKYSOLAR CHARACTER SET utf8 COLLATE UTF8_GENERAL_CI;
+
+# selecionar db skysolar 
 USE SKYSOLAR;
 
-#criação da tabela usuários
-create table usuarios(
+# Criação da tabela usuarios
+CREATE TABLE usuarios(
 	id int unsigned not null auto_increment,
     nome_completo varchar(100) not null,
 	rg varchar(20), 
@@ -12,8 +15,8 @@ create table usuarios(
     primary key(id)
 );
 
-#criação da tabela endereços
-create table enderecos(
+# Criação da tabela enderecos fazendo referência à enderecos
+CREATE TABLE enderecos(
 	id int unsigned not null auto_increment,
     cep varchar(20),
 	logradouro varchar(200),
@@ -22,33 +25,44 @@ create table enderecos(
 	estado varchar(200),
 	usuario_id int unsigned not null,
     primary key(id),
-	constraint fk_enderecos_usuario_usuario_id
-		foreign key(usuario_id) references usuarios(id)
+	CONSTRAINT fk_enderecos_usuario_usuario_id
+		FOREIGN KEY(usuario_id) REFERENCES usuarios(id)
 );
 
-#inserção de usuários
-insert into usuarios(nome_completo, rg, cpf, dt_nascimento) 
-values('Emerson Souza','15111355','85898556', '1982-01-07');
+# INSERÇÃO DE USUÁRIOS
+INSERT INTO usuarios(nome_completo, rg, cpf, dt_nascimento) 
+VALUE('Emerson Souza','155544447','85888788956', '1982-01-07');
+INSERT INTO usuarios(nome_completo, rg, cpf, dt_nascimento) 
+VALUE('Maria Souza','166644448','99888977958', '1960-04-01');
+INSERT INTO usuarios(nome_completo, rg, cpf, dt_nascimento) 
+VALUE('Welleson Gama','54445555','55888997854', '1992-03-15');
+INSERT INTO usuarios(nome_completo, rg, cpf, dt_nascimento) 
+VALUE('Paulo Gama','58888788','65444554888', '1950-11-10');
+INSERT INTO usuarios(nome_completo, rg, cpf, dt_nascimento) 
+VALUE('Emilly Araújo','15111444','55588597858', '2008-11-15');
 
-#inserção de enderecos
-insert into enderecos(usuario_id, cep, logradouro, bairro, cidade, estado) 
-values(1, '69028347','Rua Ademar de Barros, 20 - Sta Cruz','Flores', 'Manaus', 'AM');
+# Listando usuários
+SELECT * FROM usuarios;
 
-INSERT INTO enderecos VALUES( null, :cep, :logradouro, :bairro, :cidade, :estado, :usuario_id );
+#INSERÇÃO DE ENDEREÇOS
+#Usuário 1 possui 2 endereços
+INSERT INTO enderecos(cep, logradouro, bairro, cidade, estado, usuario_id) 
+VALUES('69028347','Rua Ademar de Barros, 20 - Sta Cruz','Flores', 'Manaus', 'AM', 1);
+INSERT INTO enderecos(cep, logradouro, bairro, cidade, estado, usuario_id) 
+VALUES('69028320','Rua 1, 12','Compensa', 'Manaus', 'AM', 1);
 
-insert into enderecos(usuario_id, cep, logradouro, bairro, cidade, estado) 
-values(2, '69028347','Rua Ademar de Barros, 20-B - Sta Cruz','Flores', 'Manaus', 'AM');
+#Usuário 2 possui 1 endereço
+INSERT INTO enderecos(cep, logradouro, bairro, cidade, estado, usuario_id) 
+VALUES('69000000','Rua Barão de Indaiá, 124-A','Pq das Laranjeiras', 'Manaus', 'AM', 2);
 
-#listagem de usuários
-select * 
-from usuarios;
+#Lista de endereços
+SELECT * 
+FROM enderecos;
 
-#listagem de endereços
-select * 
-from enderecos;
 
-#seleção de endereços relacionados a um usuário
+#Lista de enderecos por usuário
 SELECT
+	e.id,
 	u.nome_completo,
     u.rg,
     u.cpf,
@@ -61,64 +75,28 @@ SELECT
 FROM usuarios as u
 INNER JOIN enderecos as e on e.usuario_id = u.id
 WHERE
-	usuario_id = '121';
+	usuario_id = '1';
 
-#atualizando dados da tabela
+#ATUALIZAÇÃO DE REGISTROS
+#Atualização de endereco por usuário específico
 UPDATE enderecos
 SET 
-	usuario_id = 1
+	cep = '69111333'
 WHERE
 	id = 2 AND
-    usuario_id = 2;
+    usuario_id = 1;
 
-#inserindo e listando novos registros
+#Listando endereço alterado
+SELECT * FROM enderecos WHERE usuario_id = 1 AND id = 2;
 
-insert into usuarios(nome_completo, rg, cpf, dt_nascimento) 
-values('Maria José','1211353','33898354', '1993-02-17');
-
-insert into usuarios(nome_completo, rg, cpf, dt_nascimento) 
-values('Paulo Lima','3211353','33898352', '1956-02-17');
-
-select * 
-from usuarios;
-
-select * 
-from enderecos;
-
-#Exclusão de registros
-DELETE FROM usuarios
-WHERE id = 3 OR id = 4;
-
-SELECT cep, logradouro, usuario_id FROM enderecos GROUP BY usuario_id;
-
-
-
-
-
-
-SELECT
-		u.nome_completo,
-		u.rg,
-		u.cpf,
-		u.dt_nascimento,
-		e.id as endereco_
-		e.cep as cep,
-		e.logradouro as logradouro,
-		e.cidade as cidade,
-		e.estado as estado,
-		e.usuario_id as usuario_id
-	FROM usuarios as u
-	LEFT JOIN enderecos as e on e.usuario_id = u.id
-	WHERE
-		u.id = 161;
-        
-	
+#Atualizando usuarios
 UPDATE usuarios SET 
 		nome_completo = 'Paulo Gama',
 		rg = '44444556',
 		cpf = '447844574',
 		dt_nascimento = '1960-05-01' WHERE id=161;
-        
+
+#Atualizando enderecos
 UPDATE enderecos SET
     cep = '695555', 
     logradouro = 'Rua 2, 15 - Sta Cruz',
@@ -126,7 +104,11 @@ UPDATE enderecos SET
     cidade = 'Rio de Janeiro', 
     estado = 'RJ' WHERE id = 42;
     
-    
+#Excluir usuário
+DELETE FROM usuarios
+WHERE id = 1;      
+
+#Selecionando usuário específico - search
 SELECT
 	nome_completo,
 	rg,
@@ -134,5 +116,3 @@ SELECT
 	dt_nascimento
 	FROM usuarios WHERE
 	nome_completo like '%Emerson%';
-                
-select * from usuarios where id = 161;
