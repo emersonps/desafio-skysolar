@@ -3,13 +3,11 @@
 {% block master %}
 
 <h2>Cadastrar usuário</h2>
-{{endereco.0.id_endereco}}
-{{endereco.1.id_endereco}}
 <div class="container form-control">
     <form class="row g-3" action="/usuario/update" method="post" name="usuarioform">
         <div class="col-md-6">
             <label for="nome" class="form-label">Nome</label>
-            <input type="nome" class="form-control" id="nome" name="usuario_nome"                 value="{{ endereco.0.nome_completo }}">
+            <input type="nome" class="form-control" id="nome" name="usuario_nome" value="{{ endereco.0.nome_completo }}">
             <div class="invalid-feedback">
                 Please choose a username.
             </div>
@@ -24,7 +22,7 @@
         </div>
         <div class="col-md-6">
             <label for="nascimento" class="form-label">Nascimento</label>
-            <input type="text" class="form-control" id="nascimento" name="usuario_nascimento"                 value="{{ endereco.0.dt_nascimento }}">
+            <input type="text" class="form-control" id="nascimento" name="usuario_nascimento" value="{{ endereco.0.dt_nascimento }}">
         </div>
 
         <h4>Endereço 1</h4>
@@ -50,7 +48,6 @@
             </select>
         </div>
         <input type="hidden" name="id_endereco_0" value="{{ endereco.0.id_endereco }}">
-
         
         <h4>Endereço 2</h4>
         <div class="col-12">
@@ -74,7 +71,7 @@
                 <option>...</option>
             </select>
         </div>
-        <input type="hidden" name="id_endereco_1" value="{{ endereco.0.id_endereco }}">
+        <input type="hidden" name="id_endereco_1" value="{{ endereco.1.id_endereco }}">
 
         <input type="hidden" name="id" value="{{ id }}">
         <div class="col-12">

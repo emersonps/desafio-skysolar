@@ -123,7 +123,6 @@ class UsuariosController extends Controller
     public function getUpdate(Request $request, Response $response, array $args): Response
     {
         $data = $request->getParsedBody();
-        // dd($data);
 
         /** Atualização dos dados de usuários */
         $usuarioDAO = new UsuariosDAO();
@@ -160,14 +159,11 @@ class UsuariosController extends Controller
         $enderecoDAO = new EnderecosDAO();
         foreach($endereco as $end){
             if (!(empty($end['logradouro']) && empty($end['cep']) && empty($end['cidade']) && empty($end['estado']))) {
-                //Corrigir bug do ID
                 $enderecoDAO->updatetEndereco($end, $end['id']);
             }
         }
 
-        $usuarioDAO->updatetUsuario($usuario, $data['id']);
-
-        return $this->redirect('list', []);
+        return $this->redirect('list');
     }
     public function getDelete(Request $request, Response $response, array $args)
     {

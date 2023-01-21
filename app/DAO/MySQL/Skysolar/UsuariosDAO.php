@@ -79,6 +79,27 @@ class UsuariosDAO extends Conexao
         return $usuario;
     }
 
+    public function getUsuarioEnderecoApi(int $id): array
+    {
+        $usuario = $this->pdo
+            ->query("SELECT
+                    u.nome_completo,
+                    u.rg,
+                    u.cpf,
+                    u.dt_nascimento,
+                    e.cep as cep,
+                    e.logradouro as logradouro,
+                    e.cidade as cidade,
+                    e.estado as estado
+                FROM usuarios as u
+                LEFT JOIN enderecos as e on e.usuario_id = u.id
+                WHERE
+                u.id = $id")
+            ->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $usuario;
+    }
+
     public function insertUsuario(UsuarioModel $usuario): int
     {
         $statement = $this->pdo
@@ -127,6 +148,7 @@ class UsuariosDAO extends Conexao
     {
         $statement = $this->pdo
             ->prepare('DELETE FROM usuarios WHERE id = :id');
+
         $statement->execute([
             'id' => $id
         ]);

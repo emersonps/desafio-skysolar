@@ -7,10 +7,13 @@ use Slim\Http\Response;
 
 //Versionamento de API
 $app->group('/v1', function () use ($app) {
-    $app->get('/', 'app\controllers\HomeController:show');
-    $app->post('/', 'app\controllers\AboutController:index');
-    $app->put('/', 'app\controllers\UsersController:index');
-    $app->delete('/', 'app\controllers\SubscribeController:store');
+    /** Rota listar usuários */
+    $app->get('/user', 'app\controllers\ApiController:getAll');
+    $app->get('/user/{id}', 'app\controllers\ApiController:getUser');
+    $app->post('/user', 'app\controllers\ApiController:getCreate');
+    $app->put('/user/{id}', 'app\controllers\ApiController:getUpdate');
+    $app->get('/address/{id}', 'app\controllers\ApiController:getUserAddress');
+    $app->delete('/user/{id}', 'app\controllers\ApiController:getDelete'); 
 });
 
 $app->get('/', 'app\controllers\HomeController:index');

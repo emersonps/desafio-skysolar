@@ -69,9 +69,7 @@ class enderecosDAO extends Conexao
      */
 
     public function updatetEndereco(array $data, int $id): void
-    {
-        dd($id);
-        
+    {        
         $statement = $this->pdo
             ->prepare("UPDATE enderecos SET 
                 logradouro = :logradouro,
