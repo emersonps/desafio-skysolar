@@ -23,7 +23,7 @@ display_errors = off;
 php -S localhost:8080 -t public
 
 
-SOBRE OS TESTES DE API - POSTIMAN
+SOBRE OS TESTES DE API - POSTMAN
 
 1. Rode o projeto: php -S localhost:8080 -t public
 2. Acesse o link de convite para teste da API via Postman:
